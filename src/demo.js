@@ -65,7 +65,6 @@ async function searchFood() {
         title.innerHTML = element.title;
         //imgView.src = imgResource.data[0].url;
         btnInfo.innerHTML = "Info:";
-        btnInfo.addEventListener
 
         card.appendChild(title);
         card.appendChild(btnInfo);
@@ -77,6 +76,8 @@ async function searchFood() {
 
 function displayInfoListener(btn, element, card) {
     btn.addEventListener('click', () => {
+        const subCard = document.createElement('article');
+
         const instructions = document.createElement('p');
         const ingredients = document.createElement('p');
         const hideBtn = document.createElement('button');
@@ -85,11 +86,20 @@ function displayInfoListener(btn, element, card) {
         ingredients.innerHTML = element.ingredients;
         hideBtn.innerHTML = 'Hide info';
 
-        card.appendChild(instructions);
-        card.appendChild(ingredients);
-        card.appendChild(hideBtn);
+        subCard.appendChild(instructions);
+        subCard.appendChild(ingredients);
+        subCard.appendChild(hideBtn);
+        card.appendChild(subCard);
 
         btn.style.display = 'none';
+        hideInfoListener(hideBtn, btn, subCard);
+    });
+}
+
+function hideInfoListener(btnHide, btnShow, subCard) {
+    btnHide.addEventListener('click', () =>{
+        subCard.style.display = 'none';
+        btnShow.style.display = 'inline-block';
     });
 }
 
