@@ -45,26 +45,30 @@ async function getImgs(url, img) {
 async function searchFood() {
     
     // Convierte la búsqueda del input en un formato para la API
-    // let recipeSearch = fillSearch();
+    let recipeSearch = fillSearch();
     // Objeto JSON con las recetas
-    // const recipes = await getRecipe(recipeSAPI, recipeSearch);
+    const recipes = await getRecipe(recipeSAPI, recipeSearch);
 
     const recipesSection = document.getElementById('recipes_container');
-    const imgResource = await getImgs(imgsAPI, recipeSearch);
+    //Aquí lo comento porque esta API sóo me permite solicitarla 100 veces al mes
+    //const imgResource = await getImgs(imgsAPI, recipeSearch);
 
+    //
     recipes.forEach(element => {
         const card = document.createElement('article');
         const title = document.createElement('p');
         const btnInfo = document.createElement('button');
-        const imgView = document.createElement('img');
+        //const imgView = document.createElement('img');
 
         title.innerHTML = element.title;
-        imgView.src = imgResource.data[0].url;
+        //imgView.src = imgResource.data[0].url;
         btnInfo.innerHTML = "Info:";
 
+        card.appendChild(title);
+        card.appendChild(btnInfo);
+        //card.appendChild(imgView);
         recipesSection.appendChild(card);
-        card.appendChild(btnInfo)
-        card.appendChild(imgView);
+
     });
 }
 
