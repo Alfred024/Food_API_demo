@@ -60,15 +60,36 @@ async function searchFood() {
         const btnInfo = document.createElement('button');
         //const imgView = document.createElement('img');
 
+        displayInfoListener(btnInfo, element, card);
+
         title.innerHTML = element.title;
         //imgView.src = imgResource.data[0].url;
         btnInfo.innerHTML = "Info:";
+        btnInfo.addEventListener
 
         card.appendChild(title);
         card.appendChild(btnInfo);
         //card.appendChild(imgView);
         recipesSection.appendChild(card);
 
+    });
+}
+
+function displayInfoListener(btn, element, card) {
+    btn.addEventListener('click', () => {
+        const instructions = document.createElement('p');
+        const ingredients = document.createElement('p');
+        const hideBtn = document.createElement('button');
+
+        instructions.innerHTML = element.instructions;
+        ingredients.innerHTML = element.ingredients;
+        hideBtn.innerHTML = 'Hide info';
+
+        card.appendChild(instructions);
+        card.appendChild(ingredients);
+        card.appendChild(hideBtn);
+
+        btn.style.display = 'none';
     });
 }
 
